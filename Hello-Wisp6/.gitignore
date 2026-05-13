@@ -1,0 +1,15 @@
+TAGS
+Debug
+Release
+.launches
+Debug/
+Release/
+*.obj
+*.out
+*.d
+*.map
+*.xml
+*.tmp
+*.log
+.metadata/
+.theia/
