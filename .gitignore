@@ -1,0 +1,10 @@
+Debug/
+Release/
+*.obj
+*.out
+*.map
+*.xml
+*.tmp
+*.log
+.metadata/
+.theia/
