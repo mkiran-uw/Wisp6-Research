@@ -32,6 +32,8 @@ void simpleDelay(volatile uint32_t count)
     }
 }
 
+
+// KM Modified this.. 
 /*
  * Blink LED
  */
@@ -176,6 +178,7 @@ void main(void)
     /*
      * Main loop
      */
+
     while(FOREVER)
     {
         /*
@@ -223,6 +226,6 @@ void main(void)
          * Optional heartbeat
          * Uncomment if desired
          */
-        // ledBlinks(1, 20000);
+        ledBlinks(1, 20000);
     }
 }
