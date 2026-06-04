@@ -148,8 +148,7 @@ void main(void)
     WISP_setAbortConditions(
         CMD_ID_READ |
         CMD_ID_WRITE |
-        CMD_ID_BLOCKWRITE |
-        CMD_ID_ACK
+        CMD_ID_BLOCKWRITE
     );
 
     /*
