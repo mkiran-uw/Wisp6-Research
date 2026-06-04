@@ -226,6 +226,6 @@ void main(void)
          * Optional heartbeat
          * Uncomment if desired
          */
-        ledBlinks(1, 20000);
+       // ledBlinks(1, 20000);
     }
 }

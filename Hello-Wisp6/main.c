@@ -38,7 +38,7 @@ void ledBlinks(uint8_t count, uint32_t duration)
 void my_ackCallback(void)
 {
     // Quick blink when ACK received
-   ledBlinks(1, 1000);
+   // ledBlinks(1, 1000);
 }
 
 /**
@@ -113,7 +113,7 @@ void main(void)
     wispData.epcBuf[6]  = 0x00;
     wispData.epcBuf[7]  = 0x00;
     wispData.epcBuf[8]  = 0x00;
-    wispData.epcBuf[9]  = 0x66;
+    wispData.epcBuf[9]  = 0x99;
 
     // Unique WISP ID from INFO memory
     wispData.epcBuf[10] =
