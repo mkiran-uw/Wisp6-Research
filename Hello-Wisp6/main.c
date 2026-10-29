@@ -55,6 +55,20 @@ void my_readCallback(void)
  */
 void my_writeCallback(void)
 {
+    /*
+     * Update the active EPC image after a successful Write command. The protocol
+     * delivers the 16-bit payload in RWData.wrData; it does not copy it into the
+     * EPC array automatically.
+     */
+    if (RWData.memBank == 0x01 && wispData.epcBuf != NULL)
+    {
+        uint16_t e = *wispData.writeBufPtr;
+        uint8_t idx = RWData.wordPtr * 2U;
+
+        wispData.epcBuf[idx + 0] = (uint8_t)(e >> 8);
+        wispData.epcBuf[idx + 1] = (uint8_t)(e & 0xFF);
+    }
+
     // Triple blink for WRITE
     ledBlinks(3, 1000);
 }
