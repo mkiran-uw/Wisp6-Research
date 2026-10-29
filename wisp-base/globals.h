@@ -90,6 +90,7 @@
 //MACROS_Camera----------------------------------------------------------------------------------------------------------------------------//
 #define DELAY_CYCLES(x)     int delay_counter = 0; while(delay_counter < x) delay_counter++
 #ifndef __ASSEMBLER__
+#include <stddef.h>                                                     /* NULL and pointer-related definitions                 */
 #include <stdint.h>                                                     /* use xintx_t good var defs (e.g. uint8_t)             */
 #include "config/wispGuts.h"
 

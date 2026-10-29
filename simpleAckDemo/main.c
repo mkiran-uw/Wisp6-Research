@@ -86,6 +86,22 @@ void my_readCallback(void)
  */
 void my_writeCallback(void)
 {
+    /*
+     * Gen2 Write does not automatically copy the 16-bit payload into the tag's
+     * EPC buffer. The value is delivered in RWData.wrData, and the app must
+     * update the active EPC memory image so that a following read returns it.
+     */
+    if (RWData.memBank == 0x01 && wispData.epcBuf != NULL)
+    {
+        uint16_t e = *wispData.writeBufPtr;
+        uint8_t idx = RWData.wordPtr * 2U;
+
+        /* EPC bank is stored as 8-bit bytes in dataBuf[2..], so every Gen2 word
+         * is two bytes in the EPC array. */
+        wispData.epcBuf[idx + 0] = (uint8_t)(e >> 8);
+        wispData.epcBuf[idx + 1] = (uint8_t)(e & 0xFF);
+    }
+
     writeSeen = 1;
 }
 
@@ -225,6 +241,6 @@ void main(void)
          * Optional heartbeat
          * Uncomment if desired
          */
-       // ledBlinks(1, 20000);
+        ledBlinks(1, 20000);
     }
 }
