@@ -7,6 +7,9 @@ implemented. See the [implementation and change record](docs/camera-streaming-im
 for the complete explanation of the firmware, protocol, receiver, build and
 test changes, and the [camera operating guide](HimaxCamera/README.md) for setup.
 
+To switch from simpleAckDemo, load the camera firmware, and start repeated
+capture, follow the [step-by-step camera streaming instructions](docs/camera-streaming-instructions.md).
+
 The target firmware builds and software tests pass. Physical camera/R420
 streaming and achieved frame rate still require hardware validation.
 

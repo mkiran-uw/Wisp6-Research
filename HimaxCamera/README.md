@@ -13,6 +13,9 @@ The existing [Hello-Wisp6 demo](../Hello-Wisp6/main.c) is unchanged.
 For the complete before/after explanation, design decisions and validation
 record, see [camera streaming implementation](../docs/camera-streaming-implementation.md).
 
+For the CCS firmware-loading steps and first-frame/continuous-capture workflow,
+see [camera streaming instructions](../docs/camera-streaming-instructions.md).
+
 ## Build and program
 
 1. Import both [wisp-base](../wisp-base/.project) and
