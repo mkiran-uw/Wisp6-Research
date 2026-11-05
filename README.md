@@ -10,6 +10,12 @@ test changes, and the [camera operating guide](HimaxCamera/README.md) for setup.
 To switch from simpleAckDemo, load the camera firmware, and start repeated
 capture, follow the [step-by-step camera streaming instructions](docs/camera-streaming-instructions.md).
 
+For a dedicated C/assembly CCS workspace containing the camera and core
+dependencies, use [simplecam](simplecam/README.md). Run
+`.\simplecam\setup-workspace.ps1 -Build`, open the printed workspace in CCS,
+and select `simplecam` when programming the WISP. The existing PC receiver
+remains separate from the firmware.
+
 The target firmware builds and software tests pass. Physical camera/R420
 streaming and achieved frame rate still require hardware validation.
 

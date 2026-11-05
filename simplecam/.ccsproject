@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?ccsproject version="1.0"?>
+<projectOptions>
+	<ccsVersion value="12.1.0"/>
+	<deviceVariant value="MSP430FR5969"/>
+	<deviceFamily value="MSP430"/>
+	<deviceEndianness value="little"/>
+	<codegenToolVersion value="21.6.0.LTS"/>
+	<isElfFormat value="true"/>
+	<connection value="common/targetdb/connections/TIMSP430-USB.xml"/>
+	<rts value="libc.a"/>
+	<createSlaveProjects value=""/>
+	<ignoreDefaultDeviceSettings value="true"/>
+	<templateProperties value="id=simplecam.projectspec.simplecam"/>
+	<filesToOpen value=""/>
+</projectOptions>

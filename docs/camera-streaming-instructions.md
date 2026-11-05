@@ -10,16 +10,19 @@ it is not a guaranteed video-rate feed.
 
 ## 1. Select the correct firmware project
 
-Use **[HimaxCamera](../HimaxCamera/)**, not simpleAckDemo.
+Use **[simplecam](../simplecam/README.md)** for the dedicated C/assembly camera
+workspace, not simpleAckDemo. The existing **[HimaxCamera](../HimaxCamera/)**
+project remains a compatible alternative using the same shared firmware.
 
 | Component | Purpose |
 |---|---|
-| [HimaxCamera](../HimaxCamera/) | Firmware to build and load onto the WISP |
+| [simplecam](../simplecam/README.md) | Dedicated C/assembly firmware project to build and load onto the WISP |
+| [HimaxCamera](../HimaxCamera/) | Shared camera sources and alternative firmware application |
 | [wisp-base](../wisp-base/) | Core library required by the firmware |
 | [camera-reader](../camera-reader/) | PC receiver that talks to the R420 |
 | [Hello-Wisp6](../Hello-Wisp6/) | Existing RFID/LED application; not the camera firmware |
 
-Loading HimaxCamera **replaces the simpleAckDemo application on the device**.
+Loading either camera application **replaces the simpleAckDemo application on the device**.
 The old application remains in the repository and can be built/loaded again
 if you need to return to the RFID/LED demo.
 
@@ -54,7 +57,26 @@ do not discard your local work just to follow this guide.
 
 Choose either the CCS project build or the command-line build.
 
+### Recommended: Dedicated simplecam workspace
+
+Close CCS if it is using this workspace, then run from the repository root:
+
+```powershell
+.\simplecam\setup-workspace.ps1 -Build
+```
+
+This imports `wisp-base`, `HimaxCamera` and `simplecam`, builds the actual CCS
+project and checks the resulting linker map. Open the printed
+`workspaces\simplecam` workspace in CCS and select **simplecam** as the active
+project. The program to load is `simplecam\Debug\simplecam.out`.
+For path overrides, Release builds or manual import, see the
+[simplecam guide](../simplecam/README.md).
+This changes the firmware project/workspace, not the PC receiver: use the same
+receiver commands in sections 5-9 below.
+
 ### Option A: Build with CCS
+
+These two alternatives build the original `HimaxCamera` application.
 
 1. Use **Project > Import CCS Projects** to import
    [wisp-base](../wisp-base/.project) and
@@ -106,13 +128,13 @@ clone/pull of the repository does not provide a prebuilt firmware binary.
 There is a documented inherited RFID assembler warning about a NOP before
 setting GIE; a successful build must still finish linking and checking the map.
 
-## 4. Load and run HimaxCamera on the WISP
+## 4. Load and run the camera firmware on the WISP
 
 ### Start a camera debug session
 
-1. Select **HimaxCamera** in CCS.
+1. Select **simplecam** in CCS, or **HimaxCamera** if you used that alternative.
 2. Use its MSP430FR5969 target configuration and your existing debugger.
-3. Start **Debug** and confirm CCS loads the HimaxCamera executable.
+3. Start **Debug** and confirm CCS loads the executable for the project you built.
 4. Click **Resume/Run** so the MCU executes the firmware.
 
 ### Or use your existing connected debug session
@@ -121,7 +143,8 @@ If you already have a connected MSP430 debug session:
 
 1. Halt the target.
 2. Select **Run > Load > Load Program**.
-3. Choose the newly built `HimaxCamera\Debug\HimaxCamera.out`.
+3. Choose the newly built `simplecam\Debug\simplecam.out`, or
+   `HimaxCamera\Debug\HimaxCamera.out` for the alternative project.
 4. Click **Resume/Run**.
 
 Do not leave the target halted at `main` or a breakpoint while trying to

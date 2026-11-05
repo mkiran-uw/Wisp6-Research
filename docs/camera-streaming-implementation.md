@@ -13,6 +13,23 @@ images, not a demonstrated high-frame-rate video feed.
 For day-to-day build, flash and receiver instructions, see the
 [camera operating guide](../HimaxCamera/README.md).
 
+### Follow-up: Dedicated simplecam CCS workspace
+
+The [simplecam project](../simplecam/README.md) packages the same implementation
+as a dedicated C/assembly CCS application. It links the camera application,
+protocol, driver and interrupt sources from `HimaxCamera`, and links the
+`wisp-base` library. Its workspace imports all three firmware projects.
+There is no copied/diverging camera implementation or C# code on the MCU.
+The existing PC receiver still controls repeated capture and full-frame
+download; this addition does not change the wire protocol or introduce
+autonomous frame overwrites.
+
+[setup-workspace.ps1](../simplecam/setup-workspace.ps1) imports in place, supports
+repeat runs and checks for conflicting project registrations. With `-Build`,
+it uses the actual CCS headless builder and verifies the 19,764-byte NOINIT
+frame allocation and Timer1_A0 vector owner. The checked-in CCS metadata uses
+portable sibling-directory links; workspace metadata and binaries stay local.
+
 ## 1. Goal and starting point
 
 The existing RFID demo could read and write a WISP6 tag. Connecting the

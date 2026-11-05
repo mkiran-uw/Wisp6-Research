@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+  <project name="simplecam" location="." device="MSP430FR5969"
+           connection="TIMSP430-USB.xml" toolChain="TI" toolVersion="21.6.0.LTS"
+           outputType="executable" outputFormat="ELF" configurations="Debug,Release"
+           references="wisp-base,HimaxCamera" ignoreDefaultDeviceSettings="true"
+           runtimeSupportLibrary="libc.a"
+           compilerBuildOptions="--silicon_version=mspx --code_model=large --data_model=restricted --abi=eabi --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --define=__MSP430FR5969__ --include_path=&quot;${CCS_BASE_ROOT}\msp430\include&quot; --include_path=&quot;${workspace_loc:/wisp-base}&quot; --include_path=&quot;${workspace_loc:/HimaxCamera}&quot;"
+           linkerBuildOptions="--stack_size=320 --heap_size=0 --rom_model --search_path=&quot;${CCS_BASE_ROOT}\msp430\include&quot; --library=&quot;${workspace_loc:/wisp-base/build/wisp-base.lib}&quot;">
+    <file path="..\HimaxCamera\main.c" action="link"/>
+    <file path="..\HimaxCamera\camera_protocol.c" action="link"/>
+    <file path="..\HimaxCamera\camera_protocol.h" action="link"/>
+    <file path="..\HimaxCamera\cam.h" action="link"/>
+    <file path="..\HimaxCamera\Camera" action="link"/>
+    <file path="..\HimaxCamera\catchall.c" action="link"/>
+    <file path="..\HimaxCamera\isr-link.asm" action="link"/>
+    <file path="..\HimaxCamera\lnk_msp430fr5969.cmd" action="link"/>
+    <file path="..\HimaxCamera\targetConfigs\MSP430FR5969.ccxml" targetDirectory="targetConfigs" action="copy"/>
+  </project>
+</projectSpec>

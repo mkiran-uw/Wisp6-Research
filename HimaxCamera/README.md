@@ -16,6 +16,10 @@ record, see [camera streaming implementation](../docs/camera-streaming-implement
 For the CCS firmware-loading steps and first-frame/continuous-capture workflow,
 see [camera streaming instructions](../docs/camera-streaming-instructions.md).
 
+For a dedicated C/assembly application and workspace with all firmware
+dependencies, use [simplecam](../simplecam/README.md). It links these camera
+sources rather than duplicating them and uses the same PC receiver/protocol.
+
 ## Build and program
 
 1. Import both [wisp-base](../wisp-base/.project) and
