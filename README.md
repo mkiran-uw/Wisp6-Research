@@ -1,3 +1,20 @@
+# WISP6 Research
+
+## Camera streaming implementation
+
+The reader-controlled HM01B0 capture and R420 image-transfer interface is now
+implemented. See the [implementation and change record](docs/camera-streaming-implementation.md)
+for the complete explanation of the firmware, protocol, receiver, build and
+test changes, and the [camera operating guide](HimaxCamera/README.md) for setup.
+
+The target firmware builds and software tests pass. Physical camera/R420
+streaming and achieved frame rate still require hardware validation.
+
+## Original integration assessment
+
+The assessment below describes the starting implementation, before the changes
+in commit `472cfcc`; it is retained as historical context.
+
 The important point is that your Himax camera integration is already partially working. It can capture an image, but it does not yet provide a continuous, reliable way to transfer images to your PC.
 Let me break it down.
 1. What is already working?

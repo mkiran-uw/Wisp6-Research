@@ -10,6 +10,9 @@ The camera and core platform sources were restored from this repository's
 `c0dd323b3a257d41824813598194855546fe6f92`. See [the license](../license.txt).
 The existing [Hello-Wisp6 demo](../Hello-Wisp6/main.c) is unchanged.
 
+For the complete before/after explanation, design decisions and validation
+record, see [camera streaming implementation](../docs/camera-streaming-implementation.md).
+
 ## Build and program
 
 1. Import both [wisp-base](../wisp-base/.project) and
