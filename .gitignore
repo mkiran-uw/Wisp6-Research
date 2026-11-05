@@ -8,3 +8,7 @@ Release/
 *.log
 .metadata/
 .theia/
+**/bin/
+**/obj/
+camera-frames/
+.deeptest/
