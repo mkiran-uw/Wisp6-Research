@@ -1,3 +1,4 @@
+#include <msp430.h>
 #include "wisp-base.h"
 #include "Camera/HM.h"
 #include "camera_protocol.h"
@@ -13,6 +14,20 @@ static volatile uint8_t command_bank;
 static volatile uint8_t command_address;
 static volatile uint16_t command_value;
 static uint16_t block_write_buffer[6];
+
+static void blink_capture_status(uint8_t count)
+{
+    uint8_t blink;
+
+    PDIR_LED |= PIN_LED;
+    for (blink = 0; blink < count; blink++)
+    {
+        PLEDOUT |= PIN_LED;
+        __delay_cycles(1600000U);
+        PLEDOUT &= ~PIN_LED;
+        __delay_cycles(1600000U);
+    }
+}
 
 static void write_callback(void)
 {
@@ -44,6 +59,17 @@ void main(void)
     wispData.epcBuf[11] = *((uint8_t *)INFO_WISP_TAGID);
     P3OUT &= ~BIT3;
     P3DIR |= BIT3;
+
+    command = CAMERA_CAPTURE_CMD | CAMERA_TEST_PATTERN;
+    if (camera_command(&session, command))
+    {
+        error = camera_capture(image, (uint8_t)((command & CAMERA_TEST_PATTERN) != 0));
+        camera_complete(&session, error, image);
+        if (error == CAMERA_OK)
+            blink_capture_status(20);
+        else
+            blink_capture_status(2);
+    }
     camera_window(&session, image, wispData.readBufPtr);
 
     while (FOREVER)

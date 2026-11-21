@@ -50,6 +50,14 @@ sources rather than duplicating them and uses the same PC receiver/protocol.
    for each image packet. Read the **complete 24-hex-digit EPC** using your
    existing R420 inventory program.
 
+At startup, the firmware now captures one HM01B0 walking-one test-pattern
+frame before starting RFID service. The WISP6 LED on P1.1 blinks twenty times
+if the camera capture succeeds and twice if it fails. The firmware proceeds to
+RFID service either way. RFID inventory will be unavailable during this initial
+capture, and reader-requested captures remain enabled afterward. This LED
+check confirms the configured DMA frame transfer completed on success, but does
+not verify image alignment or RFID image transfer.
+
 This project supplies the missing Timer1_A0 RFID timeout vector in addition to
 the existing RFID vectors. Camera PORT3 and DMA vectors remain owned by the
 camera driver. I2C is polled with a timer deadline and uses no USCI interrupt.

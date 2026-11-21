@@ -151,6 +151,13 @@ Do not leave the target halted at `main` or a breakpoint while trying to
 inventory or capture images. Do not deliberately erase INFO calibration/tag-ID
 memory as part of switching applications.
 
+At startup, the camera firmware performs one walking-one test-pattern capture
+before it begins RFID service. The P1.1 LED blinks twenty times if the configured
+DMA transfer completes, or twice if capture fails. RFID inventory is unavailable
+during that initial capture, but the firmware continues into RFID service either
+way. This checks camera-to-frame-buffer capture, not pixel alignment or transfer
+to the PC. The receiver can still request subsequent captures normally.
+
 ## 5. Find the camera EPC and check the reader connection
 
 Use your existing R420 inventory application to read the camera's EPC.
